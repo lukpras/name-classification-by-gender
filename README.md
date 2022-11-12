@@ -111,19 +111,19 @@ memory usage: 4.5+ MB
 Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
 - Bar Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set.
 
-![Barchart1](https://github.com/lukpras/name-classification-by-gender/blob/main/picture/barchart%201.png)
+![Barchart1](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/barchart1.png)
 
 - Pie Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set.
 
-![Piechart1](https://github.com/lukpras/name-classification-by-gender/blob/main/picture/piechart%201.png)
+![Piechart1](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/piechart1.png)
 
 - Bar Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set dengan mempertimbangkan variabel jumlah (*Count*) untuk setiap nama.
 
-![Barchart2](https://github.com/lukpras/name-classification-by-gender/blob/main/picture/barchart%202.png)
+![Barchart2](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/barchart2.png)
 
 - Pie Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set dengan mempertimbangkan variabel jumlah (*Count*) untuk setiap nama.
 
-![Piechart2](https://github.com/lukpras/name-classification-by-gender/blob/main/picture/piechart%202.png)
+![Piechart2](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/piechart2.png)
 
 
 Berdasarkan dari visual diatas dapat disimpulkan bahwa jika kita tidak menggunakan variabel jumlah (*Count*) untuk mencari perbandingan antara sebaran jenis kelamin di setiap nama, maka terlihat bahwa "Nama untuk Pria paling banyak muncul, atau memiliki variasi yang tinggi bila dibandingkan dengan nama wanita"
