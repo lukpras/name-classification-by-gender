@@ -26,8 +26,8 @@ Pada era saat ini dimana data mulai banyak digunakan, mudah didapatkan, dan muda
 ### Problem Statements
 
 Seperti yang telah disebutkan dalam latar belakang permasalahan, maka terdapat beberapa masalah yang harus dipecahkan, yaitu:
-- Bagaimana cara melakukan klasifikasi agar kita dapat memprediksi jenis kelamin hanya dengan nama
-- Mencari algoritma yang tepat untuk melakukan klasifikasi nama berdasarkan jenis kelamin.
+- Bagaimana cara melakukan klasifikasi agar kita dapat memprediksi jenis kelamin hanya dengan nama.
+- algoritma mana yang tepat untuk melakukan klasifikasi nama berdasarkan jenis kelamin.
 - Model yang dibuat harus menghasilkan akurasi yang baik dan model dapat digunakan dalam memprediksi jenis kelamin berdasarkan nama.
 
 ### Goals
@@ -111,19 +111,22 @@ memory usage: 4.5+ MB
 Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
 - Bar Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set.
 
-![Barchart1](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/barchart1.png)
+![barchart1](https://user-images.githubusercontent.com/105812169/201480172-39461b4a-5eb1-4359-9383-905546130733.png)
+
 
 - Pie Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set.
 
-![Piechart1](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/piechart1.png)
+![piechart1](https://user-images.githubusercontent.com/105812169/201480238-4c15ae28-a31b-4b47-a48f-2ccac82326ab.png)
+
 
 - Bar Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set dengan mempertimbangkan variabel jumlah (*Count*) untuk setiap nama.
 
-![Barchart2](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/barchart2.png)
+![barchart2](https://user-images.githubusercontent.com/105812169/201480193-6c7ca5ef-14cd-43ed-a1d9-7561577d4d40.png)
 
 - Pie Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set dengan mempertimbangkan variabel jumlah (*Count*) untuk setiap nama.
 
-![Piechart2](https://github.com/lukpras/name-classification-by-gender/blob/main/assets/piechart2.png)
+![piechart2](https://user-images.githubusercontent.com/105812169/201480252-16c29ae6-2458-4e92-bdc6-c719ca1ee21d.png)
+
 
 
 Berdasarkan dari visual diatas dapat disimpulkan bahwa jika kita tidak menggunakan variabel jumlah (*Count*) untuk mencari perbandingan antara sebaran jenis kelamin di setiap nama, maka terlihat bahwa "Nama untuk Pria paling banyak muncul, atau memiliki variasi yang tinggi bila dibandingkan dengan nama wanita"
@@ -132,7 +135,23 @@ Tetapi jika kita melihat dari jumlah perbandingan antara Pria dan Wanita maka pr
 
 ## Data Preparation
 Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan klasifikasi menggunakan bahasa pemrograman python, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
-- Membuat pivot dengan membuat tabel kategori untuk melihat frekuensi dari jenis kelamin Pria dan Wanita. hal ini dilakukan agar klasifikasi mudah untuk dilakukan
+- Membuat pivot dengan membuat tabel kategori untuk melihat frekuensi dari jenis kelamin Pria dan Wanita. hal ini dilakukan agar klasifikasi mudah untuk dilakukan.
+
+|  Gender |   F |    M | percent_male | gender |
+|--------:|----:|-----:|-------------:|-------:|
+|    Name |     |      |              |        |
+|    A    | 2.0 |  2.0 |          0.0 | Female |
+|  A'Aff  | 1.0 |  0.0 |         -1.0 | Female |
+|  A'Aron | 0.0 |  1.0 |          1.0 |   Male |
+|  A'Dele | 1.0 |  0.0 |         -1.0 | Female |
+|  A'Isha | 1.0 |  0.0 |         -1.0 | Female |
+|   ...   | ... |  ... |          ... |    ... |
+|  Zyvion | 0.0 |  5.0 |          1.0 |   Male |
+|  Zyvon  | 0.0 |  7.0 |          1.0 |   Male |
+| Zyyanna | 6.0 |  0.0 |         -1.0 | Female |
+|  Zyyon  | 0.0 |  6.0 |          1.0 |   Male |
+|  Zzyzx  | 0.0 | 10.0 |          1.0 |   Male |
+
 - Mengubah data text menjadi vector agar bisa dilakukan klasifikasi. Hal ini dilakukan untuk memudahkan dalam training, karena data yang tadinya string diubah menjadi bigram blocks dari karakter.
 - Memisah data menjadi Train dan Validation. Hal ini dilakukan karena data set belum memiliki Train dan Validation data.
     - Data set dipisahkan karena masih dalam satu set, dan harus kita pisah menggunakan train_test_split di library scikit-learn.
@@ -145,18 +164,35 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan klasifikasi men
 ## Modeling
 
 Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai berikut:
-- Naive Bayes dengan menggunakan Multinomial Naive Bayes
+- Multinomial Naive Bayes
     - Menggunaakan Model Multinomial Naive Bayes dengan parameter defaults, dan nilai alpha sam dengan 1 (satu).
-    - Multinomial Naive Bayes bekerja dengan memiliki asumsi bahwa setiap fitur dibuat dengan distribusi multinomial. Distribusi multinomial mendeskripsikan probabilitas dari jumlah observasi di setiap kategori.
+    - Naive Bayes adalah teknik sederhana untuk membuat klasifikasi. model yang menetapkan label kelas ke *problem instances*, direpresentasikan sebagai vektor dari nilai fitur, di mana label kelas diambil dari beberapa himpunan terbatas. Naive Bayes berasumsi bahwa nilai fitur tertentu tidak bergantung pada nilai fitur lainnya. Dengan Multinomial Naive Bayes, sampel atau fitur dari vector merepresentasikan frekuensi dari kejadian tertentu.
     - Kelebihan Naive Bayes yaitu akan menghasilkan model yang tidak overfit karena tidak mengguanakn fitur yang tidak relevan, akan tetapi hal ini juga menjadi pisau bermata dua karena akan membuat salah dalam klasifikasi dengan contoh ketika kita ingin melakukan prediksi Class Ci, akan tetapi fitur tidak mengenal Class Ci sehingga dapat membuat salah dalam klasifikasi.
+    - Parameter yang digunakan yaitu:
+        - > alpha = 1.0
+        - > fit_prior = True
+        - > class_prior = None
+
+
 - Decission Tree
     - Menggunakan parameter defaults
-    - Cara kerja Decission Tree adalah dimana algoritma ini akan membagi sebuah keputusan kedalam 2 atau lebih pilihan, atau juga dapat disebut dari satu node akan membagi ke 2 atau lebih sub-nodes. Decission Tree menggunakan flowchart seperti layaknya struktur pohon untuk memperlihatkan hasil predisiksi dari beberapa pilihan, dimulai dari akar (*root*) dan bercabang ke daun (*leaf*).
+    - Decission Tree adalah algoritma seperti flowchart dimana setiap node (titik) merepreenstasikan *test* dari setiap atribut, (misalnya apakah lemparan koin muncul kepala atau ekor), setiap cabang mewakili hasil pengujian, dan setiap *leaf* mewakili label kelas, Jalur dari *root* ke *leaf* mewakili aturan klasifikasi.
     - Kelebihan dari Decission Tree adalah model yang simple dan mudah dipahami oleh orang-orang yang mungkin kurang paham mengenai machine learning. Decission Tree pun sangat cepat, efisien dan dapat bekerja dengan berbagai macam data seperti numerik, kategori, diskrit, dan kontinyu. Akan tetapi ia pun memiliki kekurangan berupa hasil dari training dan validation mudah sekali menimbulkan overfitting karena feature yang tidak penting memiliki kemungkinan ikut dalam pelatihan model.
+    - Parameter yang digunakan yaitu:
+        - > criterion = "gini"
+        - > splitter = "best"
+        - > min_sample_split = 2
+        - > min_sample_leaf = 1
+
 - Logistic Regression
     - Menggunakan parameter defauls pada awal pembuatan model.
-    - Logistic Regression merupakan model klasifikasi berbasis parameter, dimana ia memiliki parameter yang telah ditetapkan, Logistic Regression hampir sama dengan Linear Regression, akan tetapi jika pada Linear Regression ia menarik garis lurus, pada Logistic Regression ia menarik garis dengan bentuk huruf S, atau biasa disebut ***Sigmoid***. Logistic Regression bekerja dengan menghitung probabilitas secara binary (Ya/Tidak).
+    - Logistic Regression, dalam statistika digunakan untuk memprediksi probabilitas kejadian suatu peristiwa dengan mencocokkan data pada fungsi logit kurva logistik. Metode ini merupakan model linier umum yang digunakan untuk regresi binomial. Logistic Regression bekerja dengan data binary, dimana peristiwa terjadi (1) atau tidak terjadi (0), jadi jika diberikan sejumlah fitur, ia akan mencoba untuk mengetahui apakah suatu persitiwa terjadi atau tidak. Jadi peristiwa tersebut bisa bernilai 0 atau 1, ini disebut dengan *Binomial Logistic Regression*, ada juga dengan Logistic Regression dengan beberapa nilai untuk perisiwita yang terjadi disebut dengan *Multinomial Logisitc Regression*.
     - Kelebihan Logistic Regression yaitu model simple seperti Decisiion Tree dan mudah dipahami, dan dapat digunakan untuk multiclass (multinomial regression), dan dapat melakukan klasifikasi untuk nilai yang tidak diketahui dan nilai akurasinya pun cukup besar, akan tetapi Logistic Regression pun memiliki kekurangan yang cukup signifikan yaitu memiliki asumsi bahwa data linear antara independent dan dependent varibale, nyatanya dalam dunia nyata, data tidak selalu linear.
+    - Parameter yang digunakan yaitu:
+        - > penalty = 'l2'
+        - > C = 1.0
+        - > random_state = None
+        - > solver = 'lbfgs'
 
 Dalam proses modelling pun melakukan hyperparameters tuning dalam pemilihan parameter dari default model yang terbaik. Dimana pada kasus ini model yang terbaik adalah Logistic Regression.
 Dalam melaukan hyperparameters tuning dilakukan dengan menggunakan GridSearchCV yang berada pada library scikit-learn. Parameter yang dipilih untuk melakukan tuning yaitu:
@@ -186,9 +222,14 @@ Pada model klasifikasi yang dibuat, menggunakan metric mean accuracy.
     - Lalu dari hasil prediksi pun ketika kita mencoba dengan nama yang populer dari keempat negara yang berbasis bahasa inggris yaitu AS, Kanada, UK dan Australia, maka hasil prediksi akan menghaslikan kesalahan, karena basis data hanya berasal dari keempat negara tersebut.
 
 Dari hasil akurasi tersebut maka diplih Logistic Regression sebagai algoritma yang digunakan untuk klasifikasi dan dilakukan hyperparameters tuning, dan menghasilkan nilai parameter terbaik yaitu:
-- Penalty: l2
-- Solver: lbfgs
+    
+    penalty = 'l2'
+    solver = 'lbfgs'
+    
+    
 Parameter ini merupakan default parameter dari Logistic Regression menggunakan scikit-learn, parameter dpat ditambah saat melakukan tuning dengan beberapa parameter lain seperti pada penalty dapat menggunakan nilai 'none' dan 'elasticnet', serta pada parameter solver dapat juga ditambah dengan 'saga' dan 'sag'. Lalu dapat juga ditambah dengan parameter lain seperti C
 
-Refernsi Bacaan:
-- [Predicting customer’s gender and age depending on mobile phone data](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0180-9)
+
+
+## Referensi:
+[Predicting customer’s gender and age depending on mobile phone data](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0180-9)
